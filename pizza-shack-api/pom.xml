@@ -13,9 +13,6 @@
     <packaging>war</packaging>
     <name>PizzaShack JAX-RS API</name>
     <description>Simple JAX-RS webapp service NOT using spring configuration</description>
-    <properties>
-        <jackson.version>1.8.6</jackson.version>
-    </properties>
 
     <dependencies>
         <dependency>

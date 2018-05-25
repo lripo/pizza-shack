@@ -12,7 +12,7 @@
 		if (token != null) {
 			session.setAttribute("access.token", token.getAccessToken());
 			session.setAttribute("scope", token.getScopes());
-			response.sendRedirect("index.jsp");
+			response.sendRedirect(response.encodeRedirectURL("index.jsp"));
 			try{
 			session.removeAttribute("cancel.order");
 

@@ -4,7 +4,7 @@
 <%
 	String token = (String) session.getAttribute("access.token");
 	if (token == null) {
-		response.sendRedirect("login.jsp");
+		response.sendRedirect(response.encodeRedirectURL("login.jsp"));
 		return;
 	}
 	
@@ -17,7 +17,7 @@
 		String customer = request.getParameter("userName");
 		String card = request.getParameter("ccNumber");
 		Order order = manager.saveOrder(address, pizzaType, quantity, customer, card, token);
-		response.sendRedirect("index.jsp?orderId=" + order.getOrderId());
+		response.sendRedirect(response.encodeRedirectURL("index.jsp?orderId=" + order.getOrderId()));
 	}
         session.setAttribute("cancel.order", "true");
 

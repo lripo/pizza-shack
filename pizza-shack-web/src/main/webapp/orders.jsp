@@ -4,7 +4,7 @@
 <%
 	String token = (String) session.getAttribute("access.token");
 	if (token == null) {
-		response.sendRedirect("login.jsp");
+		response.sendRedirect(response.encodeRedirectURL("login.jsp"));
 		return;
 	}
 	session.setAttribute("cancel.order", "true");

@@ -9,7 +9,7 @@
 	String token = (String) session.getAttribute("access.token");
     boolean hasPizzaOrder = false;
 	if (token == null) {
-		response.sendRedirect("login.jsp");
+		response.sendRedirect(response.encodeRedirectURL("login.jsp"));
 		return;
 	}
 	else{

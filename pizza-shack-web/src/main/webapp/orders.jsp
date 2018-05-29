@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <%@page import="com.pizzashack.client.dto.Order"%>
 <%@page import="com.pizzashack.client.web.OrderManager"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%
 	String token = (String) session.getAttribute("access.token");
 	if (token == null) {
-		response.sendRedirect(response.encodeRedirectURL("login.jsp"));
+		response.sendRedirect("login.jsp");
 		return;
 	}
 	session.setAttribute("cancel.order", "true");
@@ -67,15 +69,26 @@
             <%
             	String orderId = request.getParameter("orderId");
             	if (orderId != null) {
-            		OrderManager manager = new OrderManager();
-            		Order order = manager.getOrder(orderId, token);
-            		if (order != null) {
+                        List<Order> orders = new ArrayList<Order>();
+                        OrderManager manager = new OrderManager();
+                        if (orderId.equals("*")) {
+                            orders = manager.getAllOrders(token);
+                        } else {
+                            Order order = manager.getOrder(orderId, token);
+                            if (order != null) {
+                                orders.add(order);
+                            }
+                        }
+
+
+                        if (orders != null) {
+                            for (Order order : orders) {
             %>
             	<table class="table">
-            		
+
             			<tr>
             				<th>Order Id</th>
-            				<td><%=order.getOrderId()%></td>
+                                        <td><b><%=order.getOrderId()%></b></td>
             			</tr>
             			<tr>
             				<th>Pizza Type</th>
@@ -92,6 +105,7 @@
             		
             	</table>
             <%
+                    }
             		} else {
             %>
             <p>Invalid order ID</p>

@@ -4,7 +4,7 @@
 <%
 	String token = (String) session.getAttribute("access.token");
 	if (token == null) {
-		response.sendRedirect(response.encodeRedirectURL("login.jsp"));
+		response.sendRedirect("login.jsp");
 		return;
 	}
 	

@@ -9,6 +9,7 @@
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		Token token = manager.getToken(username, password, "order_pizza");
+                System.out.println("Got token: "+token);
 		if (token != null) {
 			session.setAttribute("access.token", token.getAccessToken());
 			session.setAttribute("scope", token.getScopes());

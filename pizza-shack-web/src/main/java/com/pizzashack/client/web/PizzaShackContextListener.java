@@ -28,13 +28,13 @@ public class PizzaShackContextListener implements ServletContextListener {
 
 		String consumerKey = System.getenv("API_CONSUMER_KEY");
                 if (consumerKey == null || consumerKey.isEmpty()) {
-                    event.getServletContext().getInitParameter("consumerKey");
+                    consumerKey = event.getServletContext().getInitParameter("consumerKey");
                 }
 		PizzaShackWebConfiguration.getInstance().setConsumerKey(consumerKey);
 
 		String consumerSecret = System.getenv("API_CONSUMER_SECRET");
                 if (consumerSecret == null || consumerSecret.isEmpty()) {
-                    event.getServletContext().getInitParameter("consumerSecret");
+                    consumerSecret = event.getServletContext().getInitParameter("consumerSecret");
                 }
 		PizzaShackWebConfiguration.getInstance().setConsumerSecret(consumerSecret);
 	}
